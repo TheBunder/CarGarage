@@ -1,6 +1,8 @@
+import java.util.concurrent.TimeUnit;
+
 public class Motorcycle extends Vehicle{
-    protected Motorcycle(int fixTime) {
-        super(1000*3);
+    protected Motorcycle() {
+        super(3);
     }
 
     @Override
@@ -9,7 +11,12 @@ public class Motorcycle extends Vehicle{
     }
 
     @Override
-    public void repair() {
-        System.out.println("Repair: Two wheels replaced");
+    public void repair(){
+        try{
+            TimeUnit.SECONDS.sleep(super.fixTime);
+            System.out.println("Repair: Two wheels replaced");
+        } catch (InterruptedException e) {
+            System.err.println("Repair interrupted for " + e);
+        }
     }
 }

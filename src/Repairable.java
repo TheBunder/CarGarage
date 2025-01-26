@@ -1,3 +1,3 @@
 public interface Repairable {
-    void repair();
+    void repair() throws InterruptedException;
 }

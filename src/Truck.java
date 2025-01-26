@@ -1,5 +1,7 @@
+import java.util.concurrent.TimeUnit;
+
 public class Truck extends Vehicle{
-    protected Truck(int fixTime) {
+    protected Truck() {
         super(1000*10);
     }
 
@@ -10,6 +12,11 @@ public class Truck extends Vehicle{
 
     @Override
     public void repair() {
-        System.out.println("Repair: Horn fluid filled");
+        try {
+            TimeUnit.SECONDS.sleep(super.fixTime);
+            System.out.println("Repair: Horn fluid filled");
+        } catch (InterruptedException e) {
+            System.err.println("Repair interrupted for " + e);
+        }
     }
 }
